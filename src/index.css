@@ -2,6 +2,23 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #9f2020;
+  --color-secondary: #ffcece;
+  --color-accent: #ff3b3b;
+}
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: true;
+  --color-primary: #c20000;
+  --color-secondary: #4c0303;
+  --color-accent: #862b2b;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 * {
   font-family: "Lora", serif;
 }
