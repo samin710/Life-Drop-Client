@@ -89,6 +89,12 @@ const SignIn = () => {
             Create one
           </Link>
         </p>
+        <p className="text-sm text-center">
+          Do not want to create an account now?{" "}
+          <Link to="/" className="text-blue-600 underline hover:text-blue-800">
+            Go to Home
+          </Link>
+        </p>
       </div>
     </div>
   );

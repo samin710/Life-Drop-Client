@@ -25,7 +25,8 @@ const DashboardLayout = () => {
         <nav className="flex flex-col p-4 gap-2">
           <NavLink
             onClick={() => setDrawerOpen(!drawerOpen)}
-            to="/dashboard" end
+            to="/dashboard"
+            end
             className={({ isActive }) =>
               isActive
                 ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
@@ -50,7 +51,7 @@ const DashboardLayout = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/request"
+            to="/dashboard/create-donation-request"
             className={({ isActive }) =>
               isActive
                 ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
@@ -58,7 +59,7 @@ const DashboardLayout = () => {
             }
           >
             <Droplet className="w-4 h-4 mr-2" />
-            Blood Requests
+            Donation Requests
           </NavLink>
 
           {/* Future example for donor list or admin panel */}
