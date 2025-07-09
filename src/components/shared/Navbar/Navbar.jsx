@@ -36,28 +36,28 @@ const Navbar = () => {
     <>
       <NavLink
         to="/"
-        className={({ isActive }) => (isActive ? " text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
       >
         Home
       </NavLink>
-      <NavLink
-        to="/donors"
-        className={({ isActive }) => (isActive ? " text-accent font-bold" : "")}
-      >
-        Donors
-      </NavLink>
-      <NavLink
-        to="/request"
-        className={({ isActive }) => (isActive ? " text-accent font-bold" : "")}
-      >
-        Request
-      </NavLink>
+
       <NavLink
         to="/about"
-        className={({ isActive }) => (isActive ? " text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
       >
         About
       </NavLink>
+
+      {user && (
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? "text-accent font-bold" : ""
+          }
+        >
+          Dashboard
+        </NavLink>
+      )}
     </>
   );
 
