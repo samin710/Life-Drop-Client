@@ -51,6 +51,7 @@ const DashboardLayout = () => {
           </NavLink>
 
           <NavLink
+            onClick={() => setDrawerOpen(!drawerOpen)}
             to="/dashboard/create-donation-request"
             className={({ isActive }) =>
               isActive

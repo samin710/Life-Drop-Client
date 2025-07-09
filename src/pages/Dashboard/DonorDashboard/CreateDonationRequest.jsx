@@ -71,7 +71,7 @@ const CreateDonationRequest = () => {
         createdAt: new Date().toISOString(),
       };
 
-      await axiosInstance.post("/donation-requests", donationData);
+      await axiosInstance.post("/donation-requests", donationData);// ai api ta kora baki ase
 
       Swal.fire(
         "Request Created",
@@ -95,7 +95,7 @@ const CreateDonationRequest = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4"
       >
         {/* Requester Info */}
         <div>
@@ -159,7 +159,7 @@ const CreateDonationRequest = () => {
           </select>
         </div>
 
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
           <label className="label">Hospital Name</label>
           <input
             type="text"
@@ -169,7 +169,7 @@ const CreateDonationRequest = () => {
           />
         </div>
 
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
           <label className="label">Full Address</label>
           <input
             type="text"
@@ -203,7 +203,7 @@ const CreateDonationRequest = () => {
           />
         </div>
 
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
           <label className="label">Donation Time</label>
           <input
             type="time"
@@ -212,7 +212,7 @@ const CreateDonationRequest = () => {
           />
         </div>
 
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
           <label className="label">Request Message</label>
           <textarea
             {...register("requestMessage", { required: true })}
@@ -222,7 +222,7 @@ const CreateDonationRequest = () => {
           />
         </div>
 
-        <div className="md:col-span-2 flex justify-end">
+        <div className="lg:col-span-2 flex justify-end">
           <button
             type="submit"
             className="btn btn-primary"
