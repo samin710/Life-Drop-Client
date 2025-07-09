@@ -20,11 +20,12 @@ const DashboardLayout = () => {
           className="flex items-center gap-2 p-4 border-b border-b-primary"
         >
           <img src={logo} alt="LifeDrop" className="w-10 h-10" />
-          <h1 className="text-xl font-bold text-red-600">LifeDrop</h1>
+          <h1 className="text-xl font-bold text-primary">LifeDrop</h1>
         </Link>
         <nav className="flex flex-col p-4 gap-2">
           <NavLink
-            to="/dashboard"
+            onClick={() => setDrawerOpen(!drawerOpen)}
+            to="/dashboard" end
             className={({ isActive }) =>
               isActive
                 ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
@@ -36,6 +37,7 @@ const DashboardLayout = () => {
           </NavLink>
 
           <NavLink
+            onClick={() => setDrawerOpen(!drawerOpen)}
             to="/dashboard/profile"
             className={({ isActive }) =>
               isActive
@@ -78,7 +80,7 @@ const DashboardLayout = () => {
           </button>
           <div className="flex items-center gap-2">
             <img src={logo} alt="LifeDrop" className="w-8 h-8" />
-            <h1 className="text-lg font-bold text-red-600">LifeDrop</h1>
+            <h1 className="text-lg font-bold text-primary">LifeDrop</h1>
           </div>
         </div>
 

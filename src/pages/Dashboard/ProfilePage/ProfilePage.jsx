@@ -5,10 +5,9 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import Loading from "../../../components/Loading/Loading";
 import useAxios from "../../../Hooks/useAxios";
-import { data } from "react-router";
 
 const ProfilePage = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading } = useAuth();
   const axiosInstance = useAxios();
   const queryClient = useQueryClient();
 
@@ -56,22 +55,23 @@ const ProfilePage = () => {
     isError,
   } = useQuery({
     queryKey: ["profile", user?.email],
-    enabled: !!user?.email && !authLoading,
+    enabled: !!user?.email && !loading,
     queryFn: async () => {
       const res = await axiosInstance.get(`/users?email=${user.email}`);
+      reset(res.data[0]);
       return res.data;
-    },
-    onSuccess: (data) => {
-      reset(data); // set form values
-
-      console.log(data);
     },
   });
 
   // Update mutation
   const mutation = useMutation({
-    mutationFn: (updatedData) =>
-      axiosInstance.patch(`/users?email=${user.email}`, updatedData),
+    mutationFn: async (updatedData) => {
+      const { _id, ...sanitizedData } = updatedData;
+      return await axiosInstance.patch(
+        `/users?email=${user.email}`,
+        sanitizedData
+      );
+    },
     onSuccess: () => {
       Swal.fire("Updated", "Profile updated successfully", "success");
       setEditMode(false);
@@ -83,10 +83,12 @@ const ProfilePage = () => {
   });
 
   const onSubmit = (data) => {
-    if (isDirty) mutation.mutate(data);
+    if (isDirty) {
+      mutation.mutate(data);
+    }
   };
 
-  if (isLoading || authLoading) return <Loading />;
+  if (isLoading || loading) return <Loading />;
   if (isError)
     return <div className="text-center mt-10">Failed to load profile.</div>;
 
@@ -97,7 +99,7 @@ const ProfilePage = () => {
           <div key={index}>
             {" "}
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-red-600">My Profile</h2>
+              <h2 className="text-xl font-semibold text-primary">My Profile</h2>
               {editMode ? (
                 <button
                   onClick={handleSubmit(onSubmit)}
@@ -116,15 +118,15 @@ const ProfilePage = () => {
               )}
             </div>
             <form
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-4"
               onSubmit={(e) => e.preventDefault()}
             >
               {/* Avatar */}
-              <div className="col-span-2 flex justify-center">
+              <div className="lg:col-span-2 flex justify-center">
                 <img
                   src={profile?.avatar}
                   alt="avatar"
-                  className="w-28 h-28 rounded-full border-2 border-red-500"
+                  className="lg:w-28 lg:h-28 md:w-20 md:h-20 w-16 rounded-full border-2 border-primary"
                 />
               </div>
 
@@ -138,7 +140,6 @@ const ProfilePage = () => {
                   disabled={!editMode}
                 />
               </div>
-
               {/* Email (not editable) */}
               <div>
                 <label className="label">Email</label>
@@ -149,7 +150,6 @@ const ProfilePage = () => {
                   disabled
                 />
               </div>
-
               {/* District */}
               <div>
                 <label className="label">District</label>
@@ -166,7 +166,6 @@ const ProfilePage = () => {
                   ))}
                 </select>
               </div>
-
               {/* Upazila */}
               <div>
                 <label className="label">Upazila</label>
@@ -183,7 +182,6 @@ const ProfilePage = () => {
                   ))}
                 </select>
               </div>
-
               {/* Blood Group */}
               <div>
                 <label className="label">Blood Group</label>
