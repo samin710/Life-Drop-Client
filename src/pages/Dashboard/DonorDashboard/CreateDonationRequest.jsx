@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxios from "../../../Hooks/useAxios";
 import Loading from "../../../components/Loading/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const CreateDonationRequest = () => {
   const { user, loading: authLoading } = useAuth();
@@ -44,13 +45,19 @@ const CreateDonationRequest = () => {
     }
   }, [selectedDistrict, districts, upazilas]);
 
-  const [userInfo, setUserInfo] = useState([]);
+  const {
+    data: userInfo,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["profile", user?.email],
+    enabled: !!user?.email && !authLoading,
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/users/email?email=${user.email}`);
+      return res.data;
+    },
+  });
 
-  useEffect(() => {
-    axiosInstance.get(`/users?email=${user.email}`).then((res) => {
-      setUserInfo(res.data);
-    });
-  }, [axiosInstance, user.email]);
 
   const onSubmit = async (formData) => {
     try {
@@ -66,12 +73,12 @@ const CreateDonationRequest = () => {
       const donationData = {
         ...formData,
         requesterName: user.displayName,
-        requesterEmail: user.email,
+        requesterEmail: user.email,   
         status: "pending",
         createdAt: new Date().toISOString(),
       };
 
-      await axiosInstance.post("/donation-requests", donationData);// ai api ta kora baki ase
+      await axiosInstance.post("/donation-requests", donationData); 
 
       Swal.fire(
         "Request Created",
@@ -85,7 +92,9 @@ const CreateDonationRequest = () => {
     }
   };
 
-  if (authLoading) return <Loading />;
+  if (isLoading || authLoading) return <Loading />;
+  if (isError)
+    return <div className="text-center mt-10">Failed to load profile.</div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
