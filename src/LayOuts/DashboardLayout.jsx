@@ -1,4 +1,4 @@
-import { Menu, X } from "lucide-react"; // You can use any icon lib
+import { ClipboardList, Menu, X } from "lucide-react"; // You can use any icon lib
 import { useState } from "react";
 import logo from "../assets/logo.png"; // Adjust path as needed
 import { Link, NavLink, Outlet } from "react-router";
@@ -61,6 +61,18 @@ const DashboardLayout = () => {
           >
             <Droplet className="w-4 h-4 mr-2" />
             Donation Requests
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/my-donation-requests"
+            className={({ isActive }) =>
+              isActive
+                ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                : "btn btn-sm btn-ghost justify-start"
+            }
+          >
+            <ClipboardList className="w-4 h-4 mr-2" />
+            My Donation Requests
           </NavLink>
 
           {/* Future example for donor list or admin panel */}
