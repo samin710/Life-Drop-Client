@@ -3,9 +3,12 @@ import { useState } from "react";
 import logo from "../assets/logo.png"; // Adjust path as needed
 import { Link, NavLink, Outlet } from "react-router";
 import { Home, User, Droplet, Users, LayoutDashboard } from "lucide-react";
+import useUserRole from "../Hooks/useUserRole";
 
 const DashboardLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const { role, roleLoading } = useUserRole();
 
   return (
     <div className="flex min-h-screen bg-base-200">
@@ -13,7 +16,7 @@ const DashboardLayout = () => {
       <div
         className={`fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-lg transition-transform transform ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0`}
+        } lg:relative lg:translate-x-0`}
       >
         <Link
           to={"/"}
@@ -50,45 +53,42 @@ const DashboardLayout = () => {
             My Profile
           </NavLink>
 
-          <NavLink
-            onClick={() => setDrawerOpen(!drawerOpen)}
-            to="/dashboard/create-donation-request"
-            className={({ isActive }) =>
-              isActive
-                ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
-                : "btn btn-sm btn-ghost justify-start"
-            }
-          >
-            <Droplet className="w-4 h-4 mr-2" />
-            Donation Requests
-          </NavLink>
+          {!roleLoading && role === "donor" && (
+            <>
+              <NavLink
+                onClick={() => setDrawerOpen(!drawerOpen)}
+                to="/dashboard/create-donation-request"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    : "btn btn-sm btn-ghost justify-start"
+                }
+              >
+                <Droplet className="w-4 h-4 mr-2" />
+                Donation Requests
+              </NavLink>
 
-          <NavLink
-            to="/dashboard/my-donation-requests"
-            className={({ isActive }) =>
-              isActive
-                ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
-                : "btn btn-sm btn-ghost justify-start"
-            }
-          >
-            <ClipboardList className="w-4 h-4 mr-2" />
-            My Donation Requests
-          </NavLink>
-
-          {/* Future example for donor list or admin panel */}
-          {/* 
-  <NavLink to="/dashboard/donors" className={({ isActive }) => isActive ? "..." : "..."}>
-    <Users className="w-4 h-4 mr-2" />
-    All Donors
-  </NavLink> 
-  */}
+              <NavLink
+                onClick={() => setDrawerOpen(!drawerOpen)}
+                to="/dashboard/my-donation-requests"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    : "btn btn-sm btn-ghost justify-start"
+                }
+              >
+                <ClipboardList className="w-4 h-4 mr-2" />
+                My Donation Requests
+              </NavLink>
+            </>
+          )}
         </nav>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col w-full">
         {/* Top Navbar */}
-        <div className="flex items-center justify-between bg-white shadow-md px-4 py-3 md:hidden">
+        <div className="flex items-center justify-between bg-white shadow-md px-4 py-3 lg:hidden">
           <button onClick={() => setDrawerOpen(!drawerOpen)}>
             {drawerOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

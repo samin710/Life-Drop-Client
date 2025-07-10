@@ -1,48 +1,11 @@
-import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import Swal from "sweetalert2";
-import useAuth from "../../../Hooks/useAuth";
 import useAxios from "../../../Hooks/useAxios";
-import { useNavigate } from "react-router";
-import Loading from "../../../components/Loading/Loading";
+import { Link, useNavigate } from "react-router";
 
-const statusOptions = ["all", "pending", "inprogress", "done", "canceled"];
-
-const MyDonationRequests = () => {
-  const { user } = useAuth();
+const RecentDonationRequests = ({ requests, refetch }) => {
   const axiosInstance = useAxios();
   const navigate = useNavigate();
-
-  const [filterStatus, setFilterStatus] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-
-  const {
-    data: requests = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["myDonationRequests", user?.email],
-    enabled: !!user?.email,
-    queryFn: async () => {
-      const res = await axiosInstance.get(
-        `/donation-requests/email?email=${user.email}`
-      );
-      return res.data;
-    },
-  });
-
-  // Filtered and paginated data
-  const filteredData =
-    filterStatus === "all"
-      ? requests
-      : requests.filter((item) => item.status === filterStatus);
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  const currentData = filteredData.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
 
   // Handle Status Change
   const handleStatusChange = async (id, newStatus) => {
@@ -84,57 +47,38 @@ const MyDonationRequests = () => {
     });
   };
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">My Donation Requests</h2>
+    <div className="bg-white shadow-md rounded-lg p-6 mt-10">
+      <h3 className="text-xl font-semibold text-red-600 mb-4">
+        My Recent Donation Requests
+      </h3>
 
-      {/* Filter */}
-      <div className="mb-4">
-        <select
-          className="select select-bordered"
-          value={filterStatus}
-          onChange={(e) => {
-            setFilterStatus(e.target.value);
-            setCurrentPage(1);
-          }}
-        >
-          {statusOptions.map((status) => (
-            <option key={status} value={status}>
-              {status[0].toUpperCase() + status.slice(1)}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Table */}
       <div className="overflow-x-auto">
-        <table className="table w-full border border-secondary">
-          <thead>
-            <tr className="bg-gray-100">
-              <th>#</th>
-              <th>Recipient</th>
+        <table className="table">
+          <thead className="bg-gray-100">
+            <tr>
+              <th>Recipient Name</th>
               <th>Location</th>
-              <th>Date </th>
+              <th>Date</th>
               <th>Time</th>
-              <th>Blood</th>
+              <th>Blood Group</th>
               <th>Status</th>
               <th>Donor Info</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {currentData.length === 0 ? (
+            {requests.length === 0 ? (
               <tr>
                 <td colSpan="8" className="text-center py-4">
                   No donation requests found.
                 </td>
               </tr>
             ) : (
-              currentData.map((item, index) => (
+              requests.map((item) => (
                 <tr key={item._id}>
-                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                   <td>{item.recipientName}</td>
                   <td>
                     {item.recipientDistrict}, {item.recipientUpazila}
@@ -204,22 +148,16 @@ const MyDonationRequests = () => {
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="mt-4 flex justify-center gap-2">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-          <button
-            key={pageNum}
-            onClick={() => setCurrentPage(pageNum)}
-            className={`btn btn-sm ${
-              pageNum === currentPage ? "btn-primary" : "btn-ghost"
-            }`}
-          >
-            {pageNum}
-          </button>
-        ))}
+      <div className="text-right mt-4">
+        <Link
+          to="/dashboard/my-donation-requests"
+          className="btn btn-sm btn-primary"
+        >
+          View My All Requests
+        </Link>
       </div>
     </div>
   );
 };
 
-export default MyDonationRequests;
+export default RecentDonationRequests;

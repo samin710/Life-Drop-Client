@@ -7,7 +7,7 @@ const useUserRole = () => {
   const axiosInstance = useAxios();
 
   const {
-    data: role = "user",
+    data: role,
     isLoading: roleLoading,
     refetch,
   } = useQuery({
