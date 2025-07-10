@@ -5,6 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxios from "../../../Hooks/useAxios";
 import Loading from "../../../components/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
 
 const CreateDonationRequest = () => {
   const { user, loading: authLoading } = useAuth();
@@ -22,6 +23,7 @@ const CreateDonationRequest = () => {
   const [upazilas, setUpazilas] = useState([]);
   const [filteredUpazilas, setFilteredUpazilas] = useState([]);
   const selectedDistrict = watch("recipientDistrict");
+  const navigate = useNavigate();
 
   // Load district & upazila
   useEffect(() => {
@@ -58,7 +60,6 @@ const CreateDonationRequest = () => {
     },
   });
 
-
   const onSubmit = async (formData) => {
     try {
       // Check if user is active
@@ -73,12 +74,12 @@ const CreateDonationRequest = () => {
       const donationData = {
         ...formData,
         requesterName: user.displayName,
-        requesterEmail: user.email,   
+        requesterEmail: user.email,
         status: "pending",
         createdAt: new Date().toISOString(),
       };
 
-      await axiosInstance.post("/donation-requests", donationData); 
+      await axiosInstance.post("/donation-requests", donationData);
 
       Swal.fire(
         "Request Created",
@@ -86,6 +87,7 @@ const CreateDonationRequest = () => {
         "success"
       );
       reset();
+      navigate("/dashboard/my-donation-requests");
     } catch (err) {
       console.error(err);
       Swal.fire("Error", "Failed to create donation request", "error");
