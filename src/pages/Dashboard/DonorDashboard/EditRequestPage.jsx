@@ -5,13 +5,12 @@ import useAxios from "../../../Hooks/useAxios";
 import useAuth from "../../../Hooks/useAuth";
 import Loading from "../../../components/Loading/Loading";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 const EditRequestPage = () => {
   const { id } = useParams();
   const axiosInstance = useAxios();
   const { user } = useAuth();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const [districts, setDistricts] = useState([]);
@@ -71,7 +70,6 @@ const EditRequestPage = () => {
     onSuccess: () => {
       Swal.fire("Updated", "Donation request updated successfully", "success");
       queryClient.invalidateQueries({ queryKey: ["profile", user.email] });
-      // navigate("/dashboard/my-donation-requests");
     },
     onError: () => {
       Swal.fire("Error", "Failed to update donation request", "error");
@@ -101,7 +99,7 @@ const EditRequestPage = () => {
           <input
             type="text"
             className="input input-bordered w-full bg-base-200"
-            value={user.displayName}
+            value={requestData.requesterName}
             readOnly
           />
         </div>
@@ -111,7 +109,7 @@ const EditRequestPage = () => {
           <input
             type="email"
             className="input input-bordered w-full bg-base-200"
-            value={user.email}
+            value={requestData.requesterEmail}
             readOnly
           />
         </div>

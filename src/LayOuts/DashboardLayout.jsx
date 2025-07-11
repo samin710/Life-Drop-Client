@@ -1,4 +1,4 @@
-import { ClipboardList, Droplets, Menu, X } from "lucide-react"; // You can use any icon lib
+import { ClipboardList, Droplets, FileText, Menu, X } from "lucide-react"; // You can use any icon lib
 import { useState } from "react";
 import logo from "../assets/logo.png"; // Adjust path as needed
 import { Link, NavLink, Outlet } from "react-router";
@@ -78,6 +78,18 @@ const DashboardLayout = () => {
               >
                 <Droplets className="w-4 h-4 mr-2" />
                 All Blood Donation Request
+              </NavLink>
+              <NavLink
+                onClick={() => setDrawerOpen(!drawerOpen)}
+                to="/dashboard/content-management"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    : "btn btn-sm btn-ghost justify-start"
+                }
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Content Management
               </NavLink>
             </>
           )}
