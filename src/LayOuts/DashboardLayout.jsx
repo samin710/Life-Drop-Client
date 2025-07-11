@@ -52,6 +52,23 @@ const DashboardLayout = () => {
             <User className="w-4 h-4 mr-2" />
             My Profile
           </NavLink>
+          {!roleLoading && role === "admin" && (
+            <>
+              {" "}
+              <NavLink
+                onClick={() => setDrawerOpen(!drawerOpen)}
+                to="/dashboard/all-users"
+                className={({ isActive }) =>
+                  isActive
+                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    : "btn btn-sm btn-ghost justify-start"
+                }
+              >
+                <Users className="w-4 h-4 mr-2" />
+                All Users
+              </NavLink>
+            </>
+          )}
 
           {!roleLoading && role === "donor" && (
             <>

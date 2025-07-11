@@ -35,36 +35,36 @@ const StatisticsCards = () => {
       icon: <Clock className="text-yellow-500 w-8 h-8" />,
       bg: "bg-yellow-100",
     },
-    {
-      title: "In-progress Requests",
-      count: stats.inprogressRequests || 0,
-      icon: <RefreshCw className="text-blue-500 w-8 h-8" />,
-      bg: "bg-blue-100",
-    },
-    {
-      title: "Done Requests",
-      count: stats.doneRequests || 0,
-      icon: <CheckCircle className="text-green-600 w-8 h-8" />,
-      bg: "bg-green-100",
-    },
-    {
-      title: "Canceled Requests",
-      count: stats.canceledRequests || 0,
-      icon: <XCircle className="text-gray-500 w-8 h-8" />,
-      bg: "bg-gray-100",
-    },
+    // {
+    //   title: "In-progress Requests",
+    //   count: stats.inprogressRequests || 0,
+    //   icon: <RefreshCw className="text-blue-500 w-8 h-8" />,
+    //   bg: "bg-blue-100",
+    // },
+    // {
+    //   title: "Done Requests",
+    //   count: stats.doneRequests || 0,
+    //   icon: <CheckCircle className="text-green-600 w-8 h-8" />,
+    //   bg: "bg-green-100",
+    // },
+    // {
+    //   title: "Canceled Requests",
+    //   count: stats.canceledRequests || 0,
+    //   icon: <XCircle className="text-gray-500 w-8 h-8" />,
+    //   bg: "bg-gray-100",
+    // },
     {
       title: "Active Users",
-      count: stats.activeUsers || 0,
+      count: stats.activeUsers + stats.blockedUsers || 0,
       icon: <Users className="text-emerald-500 w-8 h-8" />,
       bg: "bg-emerald-100",
     },
-    {
-      title: "Blocked Users",
-      count: stats.blockedUsers || 0,
-      icon: <ShieldOff className="text-rose-500 w-8 h-8" />,
-      bg: "bg-rose-100",
-    },
+    // {
+    //   title: "Blocked Users",
+    //   count: stats.blockedUsers || 0,
+    //   icon: <ShieldOff className="text-rose-500 w-8 h-8" />,
+    //   bg: "bg-rose-100",
+    // },
   ];
 
   return (

@@ -56,30 +56,30 @@ const SignUp = () => {
     setLoading(true);
 
     // ✅ Upload avatar inside submit
-    // const image = data.avatar[0];
-    // const formData = new FormData();
-    // formData.append("image", image);
+    const image = data.avatar[0];
+    const formData = new FormData();
+    formData.append("image", image);
 
     let imageUrl = "";
 
-    // try {
-    //   const res = await axios.post(
-    //     `https://api.imgbb.com/1/upload?key=${
-    //       import.meta.env.VITE_image_upload_key
-    //     }`,
-    //     formData
-    //   );
-    //   imageUrl = res.data.data.url;
-    // } catch (err) {
-    //   console.error("Image upload failed:", err);
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Upload Failed",
-    //     text: "Failed to upload avatar image.",
-    //   });
-    //   setLoading(false);
-    //   return;
-    // }
+    try {
+      const res = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_upload_key
+        }`,
+        formData
+      );
+      imageUrl = res.data.data.url;
+    } catch (err) {
+      console.error("Image upload failed:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Upload Failed",
+        text: "Failed to upload avatar image.",
+      });
+      setLoading(false);
+      return;
+    }
 
     // ✅ Proceed with user creation
     try {
