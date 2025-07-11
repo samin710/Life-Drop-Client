@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pencil, Trash2, UploadCloud, FileDown, Plus } from "lucide-react";
-import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router";
 import useAxios from "../../../Hooks/useAxios";
 import Loading from "../../../components/Loading/Loading";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const ContentManagement = () => {
-  const { user } = useAuth();
+  const { role } = useUserRole();
   const axiosInstance = useAxios();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -46,7 +46,7 @@ const ContentManagement = () => {
   const handleAction = (id, action) => {
     if (
       (action === "delete" || action === "publish" || action === "unpublish") &&
-      user?.role !== "admin"
+      role !== "admin"
     ) {
       return;
     }
@@ -109,7 +109,7 @@ const ContentManagement = () => {
             >
               <div>
                 <h3 className="text-lg font-semibold mb-1">{blog.title}</h3>
-                <img src={blog.thumbnail} alt="" className="w-8 h-8"/>
+                <img src={blog.thumbnail} alt="" className="w-8 h-8" />
                 <p className="text-sm text-gray-500 mb-2">
                   Status: {blog.status}
                 </p>
@@ -119,7 +119,7 @@ const ContentManagement = () => {
               </div>
               <div className="flex justify-between items-center mt-3">
                 <div className="space-x-2">
-                  {blog.status === "draft" && user?.role === "admin" && (
+                  {blog.status === "draft" && role === "admin" && (
                     <button
                       onClick={() => handleAction(blog._id, "publish")}
                       className="btn btn-xs btn-success"
@@ -127,7 +127,7 @@ const ContentManagement = () => {
                       <UploadCloud className="w-4 h-4 mr-1" /> Publish
                     </button>
                   )}
-                  {blog.status === "published" && user?.role === "admin" && (
+                  {blog.status === "published" && role === "admin" && (
                     <button
                       onClick={() => handleAction(blog._id, "unpublish")}
                       className="btn btn-xs btn-warning"
@@ -135,7 +135,7 @@ const ContentManagement = () => {
                       <FileDown className="w-4 h-4 mr-1" /> Unpublish
                     </button>
                   )}
-                  {user?.role === "admin" && (
+                  {role === "admin" && (
                     <button
                       onClick={() => handleAction(blog._id, "delete")}
                       className="btn btn-xs btn-outline btn-error"
