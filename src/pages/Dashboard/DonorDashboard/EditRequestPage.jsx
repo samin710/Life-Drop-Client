@@ -71,7 +71,7 @@ const EditRequestPage = () => {
     onSuccess: () => {
       Swal.fire("Updated", "Donation request updated successfully", "success");
       queryClient.invalidateQueries({ queryKey: ["profile", user.email] });
-      navigate("/dashboard/my-donation-requests");
+      // navigate("/dashboard/my-donation-requests");
     },
     onError: () => {
       Swal.fire("Error", "Failed to update donation request", "error");
