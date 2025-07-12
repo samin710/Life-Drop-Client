@@ -89,8 +89,10 @@ const Navbar = () => {
       <div className="navbar max-w-11/12 md:max-w-10/11 mx-auto px-0">
         {/* Left: Logo */}
         <div className="flex-1">
+          {" "}
           <Link to="/" className="flex items-center gap-2 text-xl">
             <img src={logo} alt="" className="w-12 h-12" />
+            <h2 className="text-2xl font-bold text-red-600">LifeDrop</h2>
           </Link>
         </div>
 
