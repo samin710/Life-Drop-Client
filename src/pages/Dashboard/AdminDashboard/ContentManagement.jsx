@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import useAxios from "../../../Hooks/useAxios";
 import Loading from "../../../components/Loading/Loading";
 import useUserRole from "../../../Hooks/useUserRole";
+import Swal from "sweetalert2";
 
 const ContentManagement = () => {
   const { role } = useUserRole();
@@ -38,8 +39,15 @@ const ContentManagement = () => {
         });
       }
     },
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
+      if (variables.action === "delete") {
+        Swal.fire("Deleted!", "Blog has been deleted.", "success");
+      } else if (variables.action === "publish") {
+        Swal.fire("Published!", "Blog is now published.", "success");
+      } else if (variables.action === "unpublish") {
+        Swal.fire("Unpublished!", "Blog is now in draft status.", "info");
+      }
     },
   });
 

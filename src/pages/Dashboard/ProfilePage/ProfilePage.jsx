@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import Loading from "../../../components/Loading/Loading";
 import useAxios from "../../../Hooks/useAxios";
+import { Pencil } from "lucide-react";
 
 const ProfilePage = () => {
   const { user, loading } = useAuth();
@@ -15,6 +16,10 @@ const ProfilePage = () => {
   const [districts, setDistricts] = useState([]);
   const [upazilas, setUpazilas] = useState([]);
   const [filteredUpazilas, setFilteredUpazilas] = useState([]);
+
+  const [avatarPreview, setAvatarPreview] = useState("");
+  const avatarInputRef = useRef(null);
+  const [isAvatarChanged, setIsAvatarChanged] = useState(false);
 
   const {
     register,
@@ -75,6 +80,7 @@ const ProfilePage = () => {
     onSuccess: () => {
       Swal.fire("Updated", "Profile updated successfully", "success");
       setEditMode(false);
+      setIsAvatarChanged(false);
       queryClient.invalidateQueries({ queryKey: ["profile", user.email] });
     },
     onError: () => {
@@ -82,10 +88,31 @@ const ProfilePage = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    if (isDirty) {
-      mutation.mutate(data);
+  const onSubmit = async (data) => {
+    if (!isDirty && !avatarPreview) return;
+
+    const updatePayload = { ...data };
+
+    // If new avatar is selected
+    if (avatarInputRef.current?.files?.[0]) {
+      const formData = new FormData();
+      formData.append("image", avatarInputRef.current.files[0]);
+
+      try {
+        const res = await axiosInstance.post(
+          `https://api.imgbb.com/1/upload?key=${
+            import.meta.env.VITE_image_upload_key
+          }`,
+          formData
+        );
+        updatePayload.avatar = res.data?.data?.url;
+      } catch (err) {
+        console.error("Avatar upload failed", err);
+        return Swal.fire("Error", "Avatar upload failed", "error");
+      }
     }
+
+    mutation.mutate(updatePayload);
   };
 
   if (isLoading || loading) return <Loading />;
@@ -103,7 +130,7 @@ const ProfilePage = () => {
               <button
                 onClick={handleSubmit(onSubmit)}
                 className="btn btn-sm btn-success"
-                disabled={mutation.isLoading || !isDirty}
+                disabled={mutation.isLoading || (!isDirty && !isAvatarChanged)}
               >
                 {mutation.isLoading ? "Saving..." : "Save"}
               </button>
@@ -121,12 +148,37 @@ const ProfilePage = () => {
             onSubmit={(e) => e.preventDefault()}
           >
             {/* Avatar */}
-            <div className="lg:col-span-2 flex justify-center">
+            <div className="lg:col-span-2 flex justify-center relative group">
               <img
-                src={profile?.avatar}
+                src={avatarPreview || profile?.avatar}
                 alt="avatar"
-                className="lg:w-28 lg:h-28 md:w-20 md:h-20 w-16 rounded-full border-2 border-primary"
+                className="lg:w-28 lg:h-28 md:w-20 md:h-20 w-16 rounded-full border-2 border-primary object-cover"
               />
+
+              {editMode && (
+                <>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={avatarInputRef}
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        setAvatarPreview(URL.createObjectURL(file));
+                        setIsAvatarChanged(true);
+                      }
+                    }}
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => avatarInputRef.current?.click()}
+                    className="absolute bottom-1 right-1 bg-white rounded-full p-1 shadow group-hover:opacity-100 opacity-80"
+                  >
+                    <Pencil className="w-4 h-4 text-gray-600" />
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Name */}

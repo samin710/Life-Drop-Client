@@ -5,14 +5,15 @@ import useAuth from "../../../Hooks/useAuth";
 import logo from "../../../assets/logo.png";
 import Loading from "../../Loading/Loading";
 import Swal from "sweetalert2";
+import useAxios from "../../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const axiosInstance = useAxios();
 
   const navigate = useNavigate();
-
-  if (loading) return <Loading></Loading>;
 
   const handleLogout = () => {
     logOut()
@@ -31,6 +32,24 @@ const Navbar = () => {
         console.log(error.massage);
       });
   };
+
+  // Fetch profile data
+  const {
+    data: profile,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["profile", user?.email],
+    enabled: !!user?.email && !loading,
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/users/email?email=${user.email}`);
+      return res.data;
+    },
+  });
+
+  if (loading || isLoading) return <Loading></Loading>;
+  if (isError)
+    return <div className="text-center mt-10">Failed to load profile.</div>;
 
   const navItems = (
     <>
@@ -90,7 +109,7 @@ const Navbar = () => {
                 <div className="avatar">
                   <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                     <img
-                      src={user.photoURL || "/default-avatar.png"}
+                      src={profile.avatar || "/default-avatar.png"}
                       alt="User"
                     />
                   </div>
