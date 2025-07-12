@@ -9,7 +9,6 @@ const RootLayout = () => {
         <Navbar></Navbar>
       </div>
       <div className="min-h-screen max-w-11/12 md:max-w-10/11 mx-auto">
-        <h1>Root Layout</h1>
         <Outlet></Outlet>
       </div>
     </>
