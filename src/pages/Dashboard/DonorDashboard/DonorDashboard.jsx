@@ -46,7 +46,9 @@ const DonorDashboard = () => {
       {requests.length > 0 && !roleLoading && role === "donor" && (
         <RecentDonationRequests requests={requests} refetch={refetch} />
       )}
-      {!roleLoading && role === "admin" && <StatisticsCards></StatisticsCards>}
+      {!roleLoading && (role === "admin" || role === "volunteer") && (
+        <StatisticsCards></StatisticsCards>
+      )}
     </div>
   );
 };

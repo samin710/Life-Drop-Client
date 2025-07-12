@@ -52,9 +52,9 @@ const DashboardLayout = () => {
             <User className="w-4 h-4 mr-2" />
             My Profile
           </NavLink>
+
           {!roleLoading && role === "admin" && (
             <>
-              {" "}
               <NavLink
                 onClick={() => setDrawerOpen(!drawerOpen)}
                 to="/dashboard/all-users"
@@ -67,6 +67,12 @@ const DashboardLayout = () => {
                 <Users className="w-4 h-4 mr-2" />
                 All Users
               </NavLink>
+            </>
+          )}
+
+          {/* For both Admin and Volunteer */}
+          {!roleLoading && (role === "admin" || role === "volunteer") && (
+            <>
               <NavLink
                 onClick={() => setDrawerOpen(!drawerOpen)}
                 to="/dashboard/all-blood-donation-request"
@@ -94,6 +100,7 @@ const DashboardLayout = () => {
             </>
           )}
 
+          {/* For donor only */}
           {!roleLoading && role === "donor" && (
             <>
               <NavLink

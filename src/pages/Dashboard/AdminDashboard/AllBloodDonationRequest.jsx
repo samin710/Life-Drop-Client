@@ -4,12 +4,14 @@ import { useNavigate } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Loading from "../../../components/Loading/Loading";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const statusOptions = ["all", "pending", "inprogress", "done", "canceled"];
 
 const AllBloodDonationRequest = () => {
   const axiosInstance = useAxios();
   const navigate = useNavigate();
+  const { role, roleLoading } = useUserRole();
 
   const [filterStatus, setFilterStatus] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -151,24 +153,26 @@ const AllBloodDonationRequest = () => {
                     )}
                   </td>
                   <td className="space-x-1">
-                    {item.status === "inprogress" && (
-                      <>
-                        <button
-                          onClick={() => handleStatusChange(item._id, "done")}
-                          className="btn btn-xs btn-success"
-                        >
-                          Done
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleStatusChange(item._id, "canceled")
-                          }
-                          className="btn btn-xs btn-error"
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    )}
+                    {item.status === "inprogress" &&
+                      !roleLoading &&
+                      role === "admin" && (
+                        <>
+                          <button
+                            onClick={() => handleStatusChange(item._id, "done")}
+                            className="btn btn-xs btn-success"
+                          >
+                            Done
+                          </button>
+                          <button
+                            onClick={() =>
+                              handleStatusChange(item._id, "canceled")
+                            }
+                            className="btn btn-xs btn-error"
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      )}
                     <button
                       onClick={() =>
                         navigate(`/dashboard/edit-request/${item._id}`)
@@ -177,20 +181,25 @@ const AllBloodDonationRequest = () => {
                     >
                       Edit
                     </button>
-                    <button
-                      onClick={() => handleDelete(item._id)}
-                      className="btn btn-xs btn-outline btn-error"
-                    >
-                      Delete
-                    </button>
-                    <button
-                      onClick={() =>
-                        navigate(`/dashboard/request-details/${item._id}`)
-                      }
-                      className="btn btn-xs btn-info"
-                    >
-                      View
-                    </button>
+                    {!roleLoading && role === "admin" && (
+                      <>
+                        {" "}
+                        <button
+                          onClick={() => handleDelete(item._id)}
+                          className="btn btn-xs btn-outline btn-error"
+                        >
+                          Delete
+                        </button>
+                        <button
+                          onClick={() =>
+                            navigate(`/dashboard/request-details/${item._id}`)
+                          }
+                          className="btn btn-xs btn-info"
+                        >
+                          View
+                        </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))
