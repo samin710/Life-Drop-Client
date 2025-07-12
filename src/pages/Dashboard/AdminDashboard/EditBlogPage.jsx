@@ -166,6 +166,7 @@ const EditBlogPage = () => {
         <div>
           <label className="block font-medium mb-1">Content</label>
           <JoditEditor
+            key={content}
             ref={editor}
             value={content}
             tabIndex={1}
