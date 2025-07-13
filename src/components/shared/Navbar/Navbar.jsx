@@ -62,7 +62,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/about"
+        to="/donation-request"
         className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
       >
         Donation Requests
