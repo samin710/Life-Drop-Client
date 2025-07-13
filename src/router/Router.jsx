@@ -16,6 +16,7 @@ import AllBloodDonationRequest from "../pages/Dashboard/AdminDashboard/AllBloodD
 import ContentManagement from "../pages/Dashboard/AdminDashboard/ContentManagement";
 import AddBlogPage from "../pages/Dashboard/AdminDashboard/AddBlogPage";
 import EditBlogPage from "../pages/Dashboard/AdminDashboard/EditBlogPage";
+import SearchDonorsPage from "../pages/SearchDonorsPage/SearchDonorsPage";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "search-page",
+        Component: SearchDonorsPage,
       },
     ],
   },

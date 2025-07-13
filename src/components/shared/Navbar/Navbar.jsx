@@ -81,6 +81,12 @@ const Navbar = () => {
       >
         Funding
       </NavLink>
+      <NavLink
+        to="/search-page"
+        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
+      >
+        Search
+      </NavLink>
     </>
   );
 
