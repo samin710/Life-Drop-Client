@@ -69,7 +69,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/about"
+        to="/blogs"
         className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
       >
         Blogs

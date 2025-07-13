@@ -19,6 +19,8 @@ import EditBlogPage from "../pages/Dashboard/AdminDashboard/EditBlogPage";
 import SearchDonorsPage from "../pages/SearchDonorsPage/SearchDonorsPage";
 import DonationRequestsPage from "../pages/DonationRequestsPage/DonationRequestsPage";
 import DonationRequestDetails from "../pages/DonationRequestDetails/DonationRequestDetails";
+import BlogPage from "../pages/BlogPage/BlogPage";
+import BlogDetails from "../pages/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
       {
         path: "donation-requests/:id",
         Component: DonationRequestDetails,
+      },
+      {
+        path: "blogs",
+        Component: BlogPage,
+      },
+      {
+        path: "blog-details/:id",
+        Component: BlogDetails,
       },
     ],
   },
