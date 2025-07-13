@@ -143,9 +143,9 @@ const AllBloodDonationRequest = () => {
                   <td>
                     {item.status === "inprogress" ? (
                       <>
-                        <p>{item.requesterName}</p>
+                        <p>{item.donor.name}</p>
                         <p className="text-sm text-gray-500">
-                          {item.requesterEmail}
+                          {item.donor.email}
                         </p>
                       </>
                     ) : (

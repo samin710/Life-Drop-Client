@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import useAxios from "../../Hooks/useAxios";
-import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { Dialog } from "@headlessui/react";
+import useAxios from "../../Hooks/useAxios";
+import useAuth from "../../Hooks/useAuth";
+import { ArrowLeft } from "lucide-react";
 
 const DonationRequestDetails = () => {
   const { id } = useParams();
@@ -12,6 +13,8 @@ const DonationRequestDetails = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const {
     data: request,
@@ -63,6 +66,14 @@ const DonationRequestDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow mt-6">
+      <button
+        onClick={() => navigate(-1)}
+        className="flex items-center text-sm text-primary hover:underline mb-4"
+      >
+        <ArrowLeft className="w-4 h-4 mr-1" />
+        Back
+      </button>
+
       <h2 className="text-2xl font-semibold text-red-600 mb-4">
         Donation Request Details
       </h2>
@@ -75,16 +86,16 @@ const DonationRequestDetails = () => {
           <strong>Blood Group:</strong> {request.bloodGroup}
         </p>
         <p>
-          <strong>District:</strong> {request.district}
+          <strong>District:</strong> {request.recipientDistrict}
         </p>
         <p>
-          <strong>Upazila:</strong> {request.upazila}
+          <strong>Upazila:</strong> {request.recipientUpazila}
         </p>
         <p>
           <strong>Hospital Name:</strong> {request.hospitalName}
         </p>
         <p>
-          <strong>Hospital Address:</strong> {request.hospitalAddress}
+          <strong>Hospital Address:</strong> {request.fullAddress}
         </p>
         <p>
           <strong>Date:</strong> {request.donationDate}
@@ -93,7 +104,7 @@ const DonationRequestDetails = () => {
           <strong>Time:</strong> {formatTime(request.donationTime)}
         </p>
         <p>
-          <strong>Message:</strong> {request.message}
+          <strong>Message:</strong> {request.requestMessage}
         </p>
         <p>
           <strong>Status:</strong> {request.status}

@@ -56,9 +56,11 @@ const DonationRequestsPage = () => {
               <h3 className="text-lg font-bold text-gray-800 mb-1">
                 {req.recipientName}
               </h3>
-
               <p className="text-sm text-gray-600 mb-1">
-                📍 {req.hospitalName}, {req.fullAddress}
+                📍{req.recipientUpazila}, {req.recipientDistrict}
+              </p>
+              <p className="text-sm text-gray-600 mb-1">
+                🏥 {req.hospitalName}, {req.fullAddress}
               </p>
               <p className="text-sm text-gray-600 mb-1">
                 📅 {req.donationDate}
