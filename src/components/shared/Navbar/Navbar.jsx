@@ -76,7 +76,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/about"
+        to="/funding-page"
         className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
       >
         Funding
