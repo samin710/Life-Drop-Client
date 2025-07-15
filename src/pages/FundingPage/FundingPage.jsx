@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import useAxios from "../../Hooks/useAxios";
 import { loadStripe } from "@stripe/stripe-js";
 import Loading from "../../components/Loading/Loading";
 import FundingForm from "./FundingForm";
 import { Elements } from "@stripe/react-stripe-js";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_pk);
 
 const FundingPage = () => {
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const [showForm, setShowForm] = useState(false);
   const [page, setPage] = useState(1);
   const limit = 5;
@@ -23,7 +23,7 @@ const FundingPage = () => {
   } = useQuery({
     queryKey: ["fundings", page],
     queryFn: async () => {
-      const res = await axiosInstance.get(
+      const res = await axiosSecure.get(
         `/fundings?page=${page}&limit=${limit}`
       );
       return res.data;

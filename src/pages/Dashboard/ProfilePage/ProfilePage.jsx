@@ -6,10 +6,12 @@ import useAuth from "../../../Hooks/useAuth";
 import Loading from "../../../components/Loading/Loading";
 import useAxios from "../../../Hooks/useAxios";
 import { Pencil } from "lucide-react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ProfilePage = () => {
   const { user, loading } = useAuth();
   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
   const [editMode, setEditMode] = useState(false);
@@ -62,7 +64,7 @@ const ProfilePage = () => {
     queryKey: ["profile", user?.email],
     enabled: !!user?.email && !loading,
     queryFn: async () => {
-      const res = await axiosInstance.get(`/users/email?email=${user.email}`);
+      const res = await axiosSecure.get(`/users/email?email=${user.email}`);
       reset(res.data);
       return res.data;
     },

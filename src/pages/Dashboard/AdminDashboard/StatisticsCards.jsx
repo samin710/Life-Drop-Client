@@ -9,16 +9,16 @@ import {
   ShieldOff,
   Users,
 } from "lucide-react";
-import useAxios from "../../../Hooks/useAxios";
 import { FaDollarSign } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const StatisticsCards = () => {
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const { data: stats = {} } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/admin/stats");
+      const res = await axiosSecure.get("/admin/stats");
       return res.data;
     },
   });

@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { Dialog } from "@headlessui/react";
-import useAxios from "../../Hooks/useAxios";
 import useAuth from "../../Hooks/useAuth";
 import { ArrowLeft } from "lucide-react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxios from "../../Hooks/useAxios";
 
 const DonationRequestDetails = () => {
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
   const axiosInstance = useAxios();
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -23,7 +25,7 @@ const DonationRequestDetails = () => {
   } = useQuery({
     queryKey: ["donation-request", id],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/donation-requests/${id}`);
+      const res = await axiosSecure.get(`/donation-requests/${id}`);
       return res.data;
     },
   });

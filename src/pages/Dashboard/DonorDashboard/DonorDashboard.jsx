@@ -1,15 +1,15 @@
 import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import RecentDonationRequests from "./RecentDonationRequests";
-import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../components/Loading/Loading";
 import useUserRole from "../../../Hooks/useUserRole";
 import StatisticsCards from "../AdminDashboard/StatisticsCards";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const DonorDashboard = () => {
   const { user } = useAuth();
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const { role, roleLoading } = useUserRole();
 
@@ -21,7 +21,7 @@ const DonorDashboard = () => {
     queryKey: ["recent-donation-requests", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosInstance.get(
+      const res = await axiosSecure.get(
         `/donation-requests/limit?requesterEmail=${user.email}&limit=3`
       );
       return res.data;

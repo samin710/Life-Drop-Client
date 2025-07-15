@@ -10,9 +10,11 @@ import {
 import useAxios from "../../../Hooks/useAxios";
 import Loading from "../../../components/Loading/Loading";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllUsersPage = () => {
   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
   const [statusFilter, setStatusFilter] = useState("all");
@@ -26,7 +28,7 @@ const AllUsersPage = () => {
   } = useQuery({
     queryKey: ["all-users"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/users");
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });

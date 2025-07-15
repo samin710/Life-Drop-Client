@@ -5,11 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import Loading from "../../../components/Loading/Loading";
 import useUserRole from "../../../Hooks/useUserRole";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const statusOptions = ["all", "pending", "inprogress", "done", "canceled"];
 
 const AllBloodDonationRequest = () => {
   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const { role, roleLoading } = useUserRole();
 
@@ -24,7 +26,7 @@ const AllBloodDonationRequest = () => {
   } = useQuery({
     queryKey: ["allDonationRequests"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/donation-requests");
+      const res = await axiosSecure.get("/donation-requests");
       return res.data;
     },
   });

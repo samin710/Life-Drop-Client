@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import useAxios from "../../../Hooks/useAxios";
 import useAuth from "../../../Hooks/useAuth";
 import Loading from "../../../components/Loading/Loading";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxios from "../../../Hooks/useAxios";
 
 const EditRequestPage = () => {
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
   const axiosInstance = useAxios();
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -53,7 +55,7 @@ const EditRequestPage = () => {
   } = useQuery({
     queryKey: ["donation-request", id],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/donation-requests/${id}`);
+      const res = await axiosSecure.get(`/donation-requests/${id}`);
       reset(res.data);
       return res.data;
     },

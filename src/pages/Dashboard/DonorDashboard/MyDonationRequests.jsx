@@ -5,12 +5,14 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxios from "../../../Hooks/useAxios";
 import { useNavigate } from "react-router";
 import Loading from "../../../components/Loading/Loading";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const statusOptions = ["all", "pending", "inprogress", "done", "canceled"];
 
 const MyDonationRequests = () => {
   const { user } = useAuth();
   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const [filterStatus, setFilterStatus] = useState("all");
@@ -25,7 +27,7 @@ const MyDonationRequests = () => {
     queryKey: ["myDonationRequests", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosInstance.get(
+      const res = await axiosSecure.get(
         `/donation-requests/email?email=${user.email}`
       );
       return res.data;

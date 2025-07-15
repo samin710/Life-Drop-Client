@@ -42,7 +42,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "donation-requests/:id",
-        Component: DonationRequestDetails,
+        element: (
+          <PrivateRoute>
+            <DonationRequestDetails></DonationRequestDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "blogs",
@@ -54,7 +58,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "funding-page",
-        Component: FundingPage,
+        element: (
+          <PrivateRoute>
+            <FundingPage></FundingPage>
+          </PrivateRoute>
+        ),
       },
     ],
   },

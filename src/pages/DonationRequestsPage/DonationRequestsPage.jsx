@@ -3,10 +3,10 @@ import { useNavigate } from "react-router";
 import { FaTint } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../components/Loading/Loading";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxios from "../../Hooks/useAxios";
 
 const DonationRequestsPage = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
   const navigate = useNavigate();
 
   const {
@@ -16,7 +16,7 @@ const DonationRequestsPage = () => {
   } = useQuery({
     queryKey: ["donation-requests", "pending"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
+      const res = await axiosInstance.get(
         "/donation-requests/status?status=pending"
       );
       return res.data;
