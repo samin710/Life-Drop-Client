@@ -32,7 +32,7 @@ const Banner = () => {
 
           {/* Search Donors Button */}
           <button
-            onClick={() => navigate("/search")}
+            onClick={() => navigate("/search-page")}
             className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white font-semibold rounded-full hover:bg-white hover:text-red-600 transition-all cursor-pointer"
           >
             <Search className="w-5 h-5" />

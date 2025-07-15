@@ -22,6 +22,7 @@ import DonationRequestDetails from "../pages/DonationRequestDetails/DonationRequ
 import BlogPage from "../pages/BlogPage/BlogPage";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import FundingPage from "../pages/FundingPage/FundingPage";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -129,5 +130,9 @@ export const router = createBrowserRouter([
         Component: EditBlogPage,
       },
     ],
+  },
+  {
+    path: "*",
+    Component: ErrorPage,
   },
 ]);
