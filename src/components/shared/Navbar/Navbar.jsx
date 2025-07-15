@@ -55,35 +55,40 @@ const Navbar = () => {
   const navItems = (
     <>
       <NavLink
+        onClick={() => setMenuOpen(!menuOpen)}
         to="/"
-        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
       >
         Home
       </NavLink>
 
       <NavLink
+        onClick={() => setMenuOpen(!menuOpen)}
         to="/donation-request"
-        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
       >
         Donation Requests
       </NavLink>
 
       <NavLink
+        onClick={() => setMenuOpen(!menuOpen)}
         to="/blogs"
-        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
       >
         Blogs
       </NavLink>
 
       <NavLink
+        onClick={() => setMenuOpen(!menuOpen)}
         to="/funding-page"
-        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
       >
         Funding
       </NavLink>
       <NavLink
+        onClick={() => setMenuOpen(!menuOpen)}
         to="/search-page"
-        className={({ isActive }) => (isActive ? "text-accent font-bold" : "")}
+        className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
       >
         Search
       </NavLink>
@@ -91,14 +96,14 @@ const Navbar = () => {
   );
 
   return (
-    <div className="backdrop-blur-3xl shadow-md">
+    <div className="backdrop-blur-3xl shadow-md bg-base-100">
       <div className="navbar max-w-11/12 md:max-w-10/11 mx-auto px-0">
         {/* Left: Logo */}
         <div className="flex-1">
           {" "}
           <Link to="/" className="flex items-center gap-2 text-xl">
             <img src={logo} alt="" className="w-12 h-12" />
-            <h2 className="text-2xl font-bold text-red-600">LifeDrop</h2>
+            <h2 className="text-2xl font-bold text-primary">LifeDrop</h2>
           </Link>
         </div>
 
@@ -123,7 +128,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[50] mt-3 p-2 shadow-lg bg-white rounded-xl w-56 border"
+                  className="dropdown-content z-[50] mt-3 p-2 shadow-lg bg-white rounded-xl w-56 border border-secondary"
                 >
                   <li>
                     <div className="px-3 py-2">
@@ -143,7 +148,7 @@ const Navbar = () => {
                       <NavLink
                         to="/dashboard"
                         className={({ isActive }) =>
-                          isActive ? "text-accent font-bold" : ""
+                          isActive ? "text-primary font-bold" : ""
                         }
                       >
                         Dashboard
@@ -153,7 +158,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-red-100 text-red-600 rounded-md w-full text-left"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-red-100 text-primary rounded-md w-full text-left"
                     >
                       <LogOut className="w-4 h-4" />
                       <span className="text-sm">Sign Out</span>
@@ -202,11 +207,11 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/signin"
-                    className="btn btn-primary btn-sm mb-2 w-full"
+                    className="btn btn-outline btn-primary btn-sm mb-2 w-full"
                   >
                     Sign In
                   </Link>
-                  <Link to="/signup" className="btn btn-primary btn-sm w-full">
+                  <Link to="/signup" className="btn btn-outline btn-primary btn-sm w-full">
                     Sign Up
                   </Link>
                 </>

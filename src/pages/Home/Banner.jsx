@@ -1,12 +1,16 @@
 import React from "react";
 import { Search, HeartHandshake } from "lucide-react";
 import { useNavigate } from "react-router";
+import bannerBG from "../../assets/banner.jpeg";
 
 const Banner = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative bg-gradient-to-r from-red-600 to-red-400 text-white py-20 overflow-hidden rounded-xl shadow-lg mt-6">
+    <section
+      className="relative text-white py-20 overflow-hidden rounded-xl shadow-lg mt-6 bg-cover bg-center"
+      style={{ backgroundImage: `url(${bannerBG})` }}
+    >
       {/* Background decorative shapes */}
       <div className="absolute inset-0 opacity-10 bg-[url('/blood-drop-bg.svg')] bg-no-repeat bg-center bg-cover"></div>
 
