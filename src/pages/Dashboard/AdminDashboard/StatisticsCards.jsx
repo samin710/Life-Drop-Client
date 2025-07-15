@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import useAxios from "../../../Hooks/useAxios";
+import { FaDollarSign } from "react-icons/fa";
 
 const StatisticsCards = () => {
   const axiosInstance = useAxios();
@@ -29,12 +30,12 @@ const StatisticsCards = () => {
       icon: <Droplet className="text-red-500 w-8 h-8" />,
       bg: "bg-red-100",
     },
-    {
-      title: "Pending Requests",
-      count: stats.pendingRequests || 0,
-      icon: <Clock className="text-yellow-500 w-8 h-8" />,
-      bg: "bg-yellow-100",
-    },
+    // {
+    //   title: "Pending Requests",
+    //   count: stats.pendingRequests || 0,
+    //   icon: <Clock className="text-yellow-500 w-8 h-8" />,
+    //   bg: "bg-yellow-100",
+    // },
     // {
     //   title: "In-progress Requests",
     //   count: stats.inprogressRequests || 0,
@@ -65,6 +66,13 @@ const StatisticsCards = () => {
     //   icon: <ShieldOff className="text-rose-500 w-8 h-8" />,
     //   bg: "bg-rose-100",
     // },
+
+    {
+      title: "Total Funds Raised",
+      count: stats.totalFunding?.toFixed(2) || "0.00",
+      icon: <FaDollarSign className="text-blue-600 w-8 h-8" />,
+      bg: "bg-green-100",
+    },
   ];
 
   return (
