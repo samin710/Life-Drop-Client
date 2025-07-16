@@ -106,8 +106,8 @@ const EditBlogPage = () => {
   if (isLoading) return <Loading></Loading>;
 
   return (
-    <div className="p-6 bg-white shadow rounded-md mt-6">
-      <h2 className="text-xl font-semibold mb-4 text-red-600">Edit Blog</h2>
+    <div className="p-6 shadow-md shadow-secondary rounded-md mt-6">
+      <h2 className="text-xl font-semibold mb-4 text-primary">Edit Blog</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Title */}
@@ -154,9 +154,9 @@ const EditBlogPage = () => {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="absolute top-1 right-1 bg-white rounded-full p-1 shadow"
+                className="absolute top-1 -right-8 rounded-full p-1 shadow"
               >
-                <Pencil className="w-4 h-4 text-gray-600" />
+                <Pencil className="w-5 h-5 cursor-pointer text-primary" />
               </button>
             </div>
           )}
@@ -164,7 +164,7 @@ const EditBlogPage = () => {
 
         {/* Content */}
         <div>
-          <label className="block font-medium mb-1">Content</label>
+          <label className="block font-medium mb-1">Content</label>{" "}
           <JoditEditor
             key={content}
             ref={editor}

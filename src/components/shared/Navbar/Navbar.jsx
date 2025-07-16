@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { LogOut, LayoutDashboard } from "lucide-react";
+import ThemeToggle from "../../../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
@@ -96,7 +97,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="backdrop-blur-3xl shadow-md bg-base-100">
+    <div className="backdrop-blur-3xl shadow-md shadow-secondary dark:shadow-accent bg-base-100">
       <div className="navbar max-w-11/12 md:max-w-10/11 mx-auto px-0">
         {/* Left: Logo */}
         <div className="flex-1">
@@ -111,7 +112,9 @@ const Navbar = () => {
         <div className="hidden lg:flex lg:gap-4 mr-8">{navItems}</div>
 
         {/* Right: Auth Buttons */}
-        <div className="flex-none gap-2">
+        <div className="flex justify-center gap-2 items-center">
+          <ThemeToggle></ThemeToggle>
+
           {user ? (
             <>
               <div className="dropdown dropdown-end">
@@ -128,22 +131,24 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[50] mt-3 p-2 shadow-lg bg-white rounded-xl w-56 border border-secondary"
+                  className="dropdown-content z-[50] mt-3 p-2 shadow-lg bg-base-100 rounded-xl w-56 border border-secondary"
                 >
                   <li>
                     <div className="px-3 py-2">
-                      <p className="font-semibold text-sm text-gray-800">
+                      <p className="font-semibold text-sm text-gray-800 dark:text-gray-300">
                         {profile.name}
                       </p>
-                      <p className="text-xs text-gray-500">{profile.email}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {profile.email}
+                      </p>
                       <p className="capitalize text-primary">{profile.role}</p>
                     </div>
                   </li>
                   <li>
-                    <hr className="my-1" />
+                    <hr className="my-2" />
                   </li>
                   <li>
-                    <button className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md w-full text-left">
+                    <button className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-md w-full text-left">
                       <LayoutDashboard className="w-4 h-4 text-gray-600" />
                       <NavLink
                         to="/dashboard"
@@ -158,7 +163,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-red-100 text-primary rounded-md w-full text-left"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-secondary dark:hover:text-white text-primary rounded-md w-full text-left"
                     >
                       <LogOut className="w-4 h-4" />
                       <span className="text-sm">Sign Out</span>
@@ -211,31 +216,14 @@ const Navbar = () => {
                   >
                     Sign In
                   </Link>
-                  <Link to="/signup" className="btn btn-outline btn-primary btn-sm w-full">
+                  <Link
+                    to="/signup"
+                    className="btn btn-outline btn-primary btn-sm w-full"
+                  >
                     Sign Up
                   </Link>
                 </>
               )}
-              {/* {user ? (
-                <button
-                  onClick={logOut}
-                  className="btn btn-outline btn-primary btn-sm mt-2"
-                >
-                  Sign Out
-                </button>
-              ) : (
-                <>
-                  <Link
-                    to="/signin"
-                    className="btn btn-primary btn-sm mb-2 w-full"
-                  >
-                    Sign In
-                  </Link>
-                  <Link to="/signup" className="btn btn-primary btn-sm w-full">
-                    Sign Up
-                  </Link>
-                </>
-              )} */}
             </div>
           </div>
         )}

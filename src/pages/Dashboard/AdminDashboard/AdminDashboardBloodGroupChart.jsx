@@ -50,11 +50,11 @@ const AdminDashboardBloodGroupChart = () => {
     });
     return row;
   });
-
+  
   if (isLoading) return <Loading />;
 
   return (
-    <div className="bg-white rounded-lg shadow p-6 mt-8">
+    <div className="shadow shadow-secondary rounded-lg p-6 mt-8">
       <h2 className="text-xl text-primary font-semibold mb-4">
         Blood Group Distribution Over Time
       </h2>

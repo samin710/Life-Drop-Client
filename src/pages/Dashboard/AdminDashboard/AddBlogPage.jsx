@@ -86,8 +86,8 @@ const AddBlogPage = () => {
   };
 
   return (
-    <div className="p-6 bg-white shadow rounded-md mt-6">
-      <h2 className="text-xl font-semibold mb-4 text-red-600">Add Blog</h2>
+    <div className="p-6  shadow-md shadow-secondary rounded-md mt-6">
+      <h2 className="text-xl font-semibold mb-4 text-primary">Add Blog</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Title */}

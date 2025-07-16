@@ -47,33 +47,33 @@ const DonationRequestsPage = () => {
           {requests.map((req) => (
             <div
               key={req._id}
-              className="border border-secondary rounded-lg p-4 shadow hover:shadow-lg transition"
+              className="border border-secondary rounded-lg p-4 shadow-md shadow-secondary hover:shadow-lg transition"
             >
               <div className="flex items-center gap-2 mb-2 text-primary font-semibold">
                 <FaTint />
                 <span>{req.bloodGroup}</span>
               </div>
 
-              <h3 className="text-lg font-bold text-gray-800 mb-1">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-400 mb-1">
                 {req.recipientName}
               </h3>
 
-              <p className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1">
                 <MapPin className="w-4 h-4 text-primary" />
                 {req.recipientUpazila}, {req.recipientDistrict}
               </p>
 
-              <p className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1">
                 <Hospital className="w-4 h-4 text-primary" />
                 {req.hospitalName}, {req.fullAddress}
               </p>
 
-              <p className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-1 flex items-center gap-1">
                 <CalendarDays className="w-4 h-4 text-primary" />
                 {req.donationDate}
               </p>
 
-              <p className="text-sm text-gray-600 mb-3 flex items-center gap-1">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 flex items-center gap-1">
                 <Clock className="w-4 h-4 text-primary" />
                 {new Date(`1970-01-01T${req.donationTime}`).toLocaleTimeString(
                   [],

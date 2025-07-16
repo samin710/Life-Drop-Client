@@ -113,7 +113,7 @@ const AllBloodDonationRequest = () => {
       <div className="overflow-x-auto border border-secondary rounded-md">
         <table className="table w-full">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-base-200">
               <th>#</th>
               <th>Recipient</th>
               <th>Location</th>

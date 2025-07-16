@@ -76,7 +76,7 @@ const ContentManagement = () => {
   if (isError) return <div className="text-red-500">Failed to load blogs.</div>;
 
   return (
-    <div className="p-6 bg-white shadow rounded-md mt-6">
+    <div className="p-6 shadow-md rounded-md mt-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-red-600">
           Content Management
@@ -113,16 +113,16 @@ const ContentManagement = () => {
           {currentBlogs.map((blog) => (
             <div
               key={blog._id}
-              className="border border-secondary rounded-lg p-4 shadow flex flex-col justify-between"
+              className="border border-secondary shadow-md shadow-secondary rounded-lg p-4 flex flex-col justify-between"
             >
               <div>
                 <h3 className="text-lg font-semibold mb-1">{blog.title}</h3>
                 <img src={blog.thumbnail} alt="" className="w-8 h-8" />
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">
                   Status: {blog.status}
                 </p>
                 <div
-                  className="line-clamp-3 text-sm text-gray-600 mb-2"
+                  className="line-clamp-3 text-sm text-gray-600 dark:text-gray-300 mb-2"
                   dangerouslySetInnerHTML={{ __html: blog.content }}
                 />
               </div>
@@ -154,7 +154,7 @@ const ContentManagement = () => {
                   )}
                   <button
                     onClick={() => navigate(`/dashboard/edit-blog/${blog._id}`)}
-                    className="btn btn-xs btn-outline"
+                    className="btn btn-xs btn-outline btn-primary"
                   >
                     <Pencil className="w-4 h-4 mr-1" /> Edit
                   </button>

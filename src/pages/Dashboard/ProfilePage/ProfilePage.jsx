@@ -175,7 +175,7 @@ const ProfilePage = () => {
                   <button
                     type="button"
                     onClick={() => avatarInputRef.current?.click()}
-                    className="absolute bottom-1 right-1 bg-white rounded-full p-1 shadow group-hover:opacity-100 opacity-80"
+                    className="absolute bottom-1 md:right-55 right-24 bg-white rounded-full p-1 shadow group-hover:opacity-100 opacity-80"
                   >
                     <Pencil className="w-4 h-4 text-gray-600" />
                   </button>

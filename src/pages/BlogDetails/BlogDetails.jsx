@@ -49,7 +49,7 @@ const BlogDetails = () => {
 
       {/* Blog Content */}
       <div
-        className="prose max-w-none text-gray-700 lg:pb-5 md:pb-3 pb-2"
+        className="prose max-w-none text-gray-700 dark:text-gray-400 lg:pb-5 md:pb-3 pb-2"
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
       <p>Posted by: {blog.postedByName}</p>

@@ -12,6 +12,7 @@ const FundingPage = () => {
   const axiosSecure = useAxiosSecure();
   const [showForm, setShowForm] = useState(false);
   const [page, setPage] = useState(1);
+  const [showBtn, setShowBtn] = useState(true);
   const limit = 5;
 
   const queryClient = useQueryClient();
@@ -46,21 +47,30 @@ const FundingPage = () => {
       {showForm && (
         <Elements stripe={stripePromise}>
           <FundingForm
-            closeForm={() => setShowForm(false)}
+            closeForm={() => {
+              setShowForm(false), setShowBtn(true);
+            }}
             queryClient={queryClient}
           />
         </Elements>
       )}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-4xl font-semibold text-primary">Funding</h2>
-        <button className="btn btn-primary" onClick={() => setShowForm(true)}>
-          Give Fund
-        </button>
+        {showBtn && (
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setShowForm(true), setShowBtn(false);
+            }}
+          >
+            Give Fund
+          </button>
+        )}
       </div>
 
       <div className="overflow-x-auto mt-6 border border-secondary shadow-md shadow-secondary rounded-lg">
         <table className="table w-full">
-          <thead className="bg-gray-100 text-gray-700">
+          <thead className="bg-gray-200 text-gray-800 dark:bg-base-200 dark:text-gray-400">
             <tr>
               <th>#</th>
               <th>Donor Name</th>

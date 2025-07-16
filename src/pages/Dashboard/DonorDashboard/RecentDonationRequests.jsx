@@ -50,14 +50,14 @@ const RecentDonationRequests = ({ requests, refetch }) => {
   // if (isLoading) return <Loading />;
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 mt-10">
-      <h3 className="text-xl font-semibold text-red-600 mb-4">
+    <div className="shadow-md shadow-secondary rounded-lg p-6 mt-10">
+      <h3 className="text-xl font-semibold text-primary mb-4">
         My Recent Donation Requests
       </h3>
 
       <div className="overflow-x-auto">
         <table className="table">
-          <thead className="bg-gray-100">
+          <thead className="bg-base-200">
             <tr>
               <th>Recipient Name</th>
               <th>Location</th>

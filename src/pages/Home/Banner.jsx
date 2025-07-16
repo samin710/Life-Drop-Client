@@ -11,7 +11,7 @@ const Banner = () => {
       className="relative text-white py-20 overflow-hidden rounded-xl shadow-lg mt-6 bg-cover bg-center z-10"
       style={{ backgroundImage: `url(${bannerBG})` }}
     >
-      /* Background decorative shapes */
+       {/* Background decorative shapes  */}
       <div className="absolute inset-0 opacity-10 bg-[url('/blood-drop-bg.svg')] bg-no-repeat bg-center bg-cover"></div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
@@ -28,7 +28,7 @@ const Banner = () => {
 
           <button
             onClick={() => navigate("/signUp")}
-            className="flex items-center gap-2 px-6 py-3 bg-white text-red-600 font-semibold rounded-full shadow hover:bg-red-50 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-base-100 text-primary font-semibold rounded-full shadow transition-all cursor-pointer"
           >
             <HeartHandshake className="w-5 h-5" />
             Join as a Donor
@@ -37,7 +37,7 @@ const Banner = () => {
           {/* Search Donors Button */}
           <button
             onClick={() => navigate("/search-page")}
-            className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white font-semibold rounded-full hover:bg-white hover:text-red-600 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white font-semibold rounded-full hover:bg-white hover:text-primary dark:border-base-100 dark:text-base-100 dark:hover:bg-base-100 transition-all cursor-pointer"
           >
             <Search className="w-5 h-5" />
             Search Donors

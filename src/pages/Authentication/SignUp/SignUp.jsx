@@ -128,8 +128,8 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-10">
-      <div className="w-full max-w-xl p-8 space-y-6 bg-white rounded-xl shadow border border-secondary">
-        <h2 className="text-2xl font-bold text-center text-red-600">
+      <div className="w-full max-w-xl p-8 space-y-6 rounded-xl shadow-md shadow-secondary border border-secondary">
+        <h2 className="text-2xl font-bold text-center text-primary">
           SignUp to LifeDrop
         </h2>
 

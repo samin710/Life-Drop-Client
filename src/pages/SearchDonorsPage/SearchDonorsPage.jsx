@@ -142,10 +142,10 @@ const SearchDonorsPage = () => {
                       {donor.bloodGroup}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     <strong>District:</strong> {donor.district}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     <strong>Upazila:</strong> {donor.upazila}
                   </p>
                   <p className="text-sm mt-1">

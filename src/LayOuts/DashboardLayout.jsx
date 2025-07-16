@@ -4,6 +4,7 @@ import logo from "../assets/logo.png"; // Adjust path as needed
 import { Link, NavLink, Outlet } from "react-router";
 import { Home, User, Droplet, Users, LayoutDashboard } from "lucide-react";
 import useUserRole from "../Hooks/useUserRole";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const DashboardLayout = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -11,20 +12,21 @@ const DashboardLayout = () => {
   const { role, roleLoading } = useUserRole();
 
   return (
-    <div className="flex min-h-screen bg-base-200">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-base-100 shadow-lg transition-transform transform ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-base-200 shadow-lg transition-transform transform ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
         } lg:relative lg:translate-x-0`}
       >
-        <Link
-          to={"/"}
-          className="flex items-center gap-2 p-4 border-b border-b-primary"
-        >
-          <img src={logo} alt="LifeDrop" className="w-10 h-10" />
-          <h1 className="text-xl font-bold text-primary">LifeDrop</h1>
-        </Link>
+        <div className="flex items-center gap-2 p-4 border-b border-b-primary">
+          <Link to={"/"} className="flex justify-center items-center">
+            <img src={logo} alt="LifeDrop" className="w-10 h-10" />
+            <h1 className="text-xl font-bold text-primary">LifeDrop</h1>
+          </Link>
+          <ThemeToggle></ThemeToggle>
+        </div>
+
         <nav className="flex flex-col p-4 gap-2">
           <NavLink
             onClick={() => setDrawerOpen(!drawerOpen)}
@@ -32,7 +34,7 @@ const DashboardLayout = () => {
             end
             className={({ isActive }) =>
               isActive
-                ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                 : "btn btn-sm btn-ghost justify-start"
             }
           >
@@ -45,7 +47,7 @@ const DashboardLayout = () => {
             to="/dashboard/profile"
             className={({ isActive }) =>
               isActive
-                ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                 : "btn btn-sm btn-ghost justify-start"
             }
           >
@@ -60,7 +62,7 @@ const DashboardLayout = () => {
                 to="/dashboard/all-users"
                 className={({ isActive }) =>
                   isActive
-                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                     : "btn btn-sm btn-ghost justify-start"
                 }
               >
@@ -78,7 +80,7 @@ const DashboardLayout = () => {
                 to="/dashboard/all-blood-donation-request"
                 className={({ isActive }) =>
                   isActive
-                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                     : "btn btn-sm btn-ghost justify-start"
                 }
               >
@@ -90,7 +92,7 @@ const DashboardLayout = () => {
                 to="/dashboard/content-management"
                 className={({ isActive }) =>
                   isActive
-                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                     : "btn btn-sm btn-ghost justify-start"
                 }
               >
@@ -108,7 +110,7 @@ const DashboardLayout = () => {
                 to="/dashboard/create-donation-request"
                 className={({ isActive }) =>
                   isActive
-                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                     : "btn btn-sm btn-ghost justify-start"
                 }
               >
@@ -121,7 +123,7 @@ const DashboardLayout = () => {
                 to="/dashboard/my-donation-requests"
                 className={({ isActive }) =>
                   isActive
-                    ? "btn btn-sm btn-ghost justify-start bg-red-100 text-red-600 font-semibold"
+                    ? "btn btn-sm btn-ghost justify-start bg-secondary text-primary dark:text-red-200 font-semibold"
                     : "btn btn-sm btn-ghost justify-start"
                 }
               >
@@ -136,7 +138,7 @@ const DashboardLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col w-full">
         {/* Top Navbar */}
-        <div className="flex items-center justify-between bg-white shadow-md px-4 py-3 lg:hidden">
+        <div className="flex items-center justify-between text-primary shadow-md shadow-secondary px-4 py-3 lg:hidden">
           <button onClick={() => setDrawerOpen(!drawerOpen)}>
             {drawerOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -147,7 +149,7 @@ const DashboardLayout = () => {
         </div>
 
         {/* Page Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6" onClick={() => setDrawerOpen(false)}>
           <Outlet />
         </main>
       </div>

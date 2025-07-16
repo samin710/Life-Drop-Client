@@ -35,15 +35,15 @@ const ContactUs = () => {
           <h2 className="text-4xl text-primary font-bold  mb-4">
             Get in Touch
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
             Have questions, suggestions, or want to contribute? We’re here to
             help. Fill out the form or reach out directly.
           </p>
-          <div className="text-lg font-medium text-gray-800">
+          <div className="text-lg font-medium text-gray-800 dark:text-gray-300">
             📞 Hotline:{" "}
             <a
               href="tel:+8801234567890"
-              className="text-red-600 hover:underline"
+              className="text-primary hover:underline"
             >
               +880 123 456 7890
             </a>

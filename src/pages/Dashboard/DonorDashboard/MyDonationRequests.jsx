@@ -113,10 +113,10 @@ const MyDonationRequests = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto shadow-md shadow-secondary">
         <table className="table w-full border border-secondary">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-base-200">
               <th>#</th>
               <th>Recipient</th>
               <th>Location</th>

@@ -23,14 +23,14 @@ const Footer = () => {
             <img src={logo} alt="" className="w-12 h-12 " />
             <h2 className="text-2xl font-bold text-primary">LifeDrop</h2>
           </Link>
-          <p className="mt-2 text-sm">
+          <p className="mt-2 text-sm ">
             Give blood, give life. Join us in building a strong donor community
             that saves lives every day.
           </p>
         </div>
 
         {/* Navigation Links */}
-        <div>
+        <div className="">
           <h3 className="font-semibold mb-2 text-primary">Quick Links</h3>
           <ul className="space-y-1 text-sm">
             <li>
