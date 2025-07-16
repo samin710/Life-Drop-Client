@@ -90,7 +90,9 @@ const MyDonationRequests = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-semibold mb-4">My Donation Requests</h2>
+      <h2 className="text-xl text-primary font-semibold mb-4">
+        My Donation Requests
+      </h2>
 
       {/* Filter */}
       <div className="mb-4">
@@ -157,47 +159,118 @@ const MyDonationRequests = () => {
                       "-"
                     )}
                   </td>
+
                   <td className="space-x-1">
-                    {item.status === "inprogress" && (
-                      <>
-                        <button
-                          onClick={() => handleStatusChange(item._id, "done")}
-                          className="btn btn-xs btn-success"
-                        >
-                          Done
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleStatusChange(item._id, "canceled")
-                          }
-                          className="btn btn-xs btn-error"
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    )}
-                    <button
-                      onClick={() =>
-                        navigate(`/dashboard/edit-request/${item._id}`)
-                      }
-                      className="btn btn-xs btn-warning"
+                    <div className="hidden lg:flex flex-wrap gap-1">
+                      {item.status === "inprogress" && (
+                        <>
+                          <button
+                            onClick={() => handleStatusChange(item._id, "done")}
+                            className="btn btn-xs btn-success"
+                          >
+                            Done
+                          </button>
+                          <button
+                            onClick={() =>
+                              handleStatusChange(item._id, "canceled")
+                            }
+                            className="btn btn-xs btn-error"
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      )}
+                      <button
+                        onClick={() =>
+                          navigate(`/dashboard/edit-request/${item._id}`)
+                        }
+                        className="btn btn-xs btn-warning"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="btn btn-xs btn-outline btn-error"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() =>
+                          navigate(`/dashboard/request-details/${item._id}`)
+                        }
+                        className="btn btn-xs btn-info"
+                      >
+                        View
+                      </button>
+                    </div>
+
+                    <div
+                      className={`dropdown dropdown-left lg:hidden ${
+                        index >= currentData.length - 2
+                          ? "dropdown-top"
+                          : "dropdown-bottom"
+                      }`}
                     >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item._id)}
-                      className="btn btn-xs btn-outline btn-error"
-                    >
-                      Delete
-                    </button>
-                    <button
-                      onClick={() =>
-                        navigate(`/dashboard/request-details/${item._id}`)
-                      }
-                      className="btn btn-xs btn-info"
-                    >
-                      View
-                    </button>
+                      <div
+                        tabIndex={0}
+                        role="button"
+                        className="btn btn-xs btn-outline m-1"
+                      >
+                        Actions
+                      </div>
+                      <ul
+                        tabIndex={0}
+                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
+                      >
+                        {item.status === "inprogress" && (
+                          <>
+                            <li>
+                              <button
+                                onClick={() =>
+                                  handleStatusChange(item._id, "done")
+                                }
+                              >
+                                ✅ Done
+                              </button>
+                            </li>
+                            <li>
+                              <button
+                                onClick={() =>
+                                  handleStatusChange(item._id, "canceled")
+                                }
+                              >
+                                ❌ Cancel
+                              </button>
+                            </li>
+                          </>
+                        )}
+                        <li>
+                          {" "}
+                          <button
+                            onClick={() =>
+                              navigate(`/dashboard/edit-request/${item._id}`)
+                            }
+                          >
+                            ✏️ Edit
+                          </button>
+                        </li>
+                        <li>
+                          <button onClick={() => handleDelete(item._id)}>
+                            🗑️ Delete
+                          </button>
+                        </li>
+                        <li>
+                          {" "}
+                          <button
+                            onClick={() =>
+                              navigate(`/dashboard/request-details/${item._id}`)
+                            }
+                          >
+                            🔍 View
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
                   </td>
                 </tr>
               ))

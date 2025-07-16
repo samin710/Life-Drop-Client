@@ -87,7 +87,9 @@ const AllBloodDonationRequest = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl text-primary font-semibold mb-4">All Blood Donation Requests</h2>
+      <h2 className="text-xl text-primary font-semibold mb-4">
+        All Blood Donation Requests
+      </h2>
 
       {/* Filter */}
       <div className="mb-4">
@@ -159,7 +161,7 @@ const AllBloodDonationRequest = () => {
                     <div className="hidden lg:flex flex-wrap gap-1">
                       {item.status === "inprogress" &&
                         !roleLoading &&
-                        role === "admin" && (
+                        (role === "admin" || role === "volunteer") && (
                           <>
                             <button
                               onClick={() =>
@@ -179,16 +181,16 @@ const AllBloodDonationRequest = () => {
                             </button>
                           </>
                         )}
-                      <button
-                        onClick={() =>
-                          navigate(`/dashboard/edit-request/${item._id}`)
-                        }
-                        className="btn btn-xs btn-warning"
-                      >
-                        Edit
-                      </button>
                       {!roleLoading && role === "admin" && (
                         <>
+                          <button
+                            onClick={() =>
+                              navigate(`/dashboard/edit-request/${item._id}`)
+                            }
+                            className="btn btn-xs btn-warning"
+                          >
+                            Edit
+                          </button>
                           <button
                             onClick={() => handleDelete(item._id)}
                             className="btn btn-xs btn-outline btn-error"
@@ -215,20 +217,23 @@ const AllBloodDonationRequest = () => {
                           : "dropdown-bottom"
                       }`}
                     >
-                      <div
-                        tabIndex={0}
-                        role="button"
-                        className="btn btn-xs btn-outline m-1"
-                      >
-                        Actions
-                      </div>
+                      {item.status === "inprogress" && (
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="btn btn-xs btn-outline m-1"
+                        >
+                          Actions
+                        </div>
+                      )}
+
                       <ul
                         tabIndex={0}
                         className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
                       >
                         {item.status === "inprogress" &&
                           !roleLoading &&
-                          role === "admin" && (
+                          (role === "admin" || role === "volunteer") && (
                             <>
                               <li>
                                 <button
@@ -250,17 +255,20 @@ const AllBloodDonationRequest = () => {
                               </li>
                             </>
                           )}
-                        <li>
-                          <button
-                            onClick={() =>
-                              navigate(`/dashboard/edit-request/${item._id}`)
-                            }
-                          >
-                            ✏️ Edit
-                          </button>
-                        </li>
+
                         {!roleLoading && role === "admin" && (
                           <>
+                            <li>
+                              <button
+                                onClick={() =>
+                                  navigate(
+                                    `/dashboard/edit-request/${item._id}`
+                                  )
+                                }
+                              >
+                                ✏️ Edit
+                              </button>
+                            </li>
                             <li>
                               <button onClick={() => handleDelete(item._id)}>
                                 🗑️ Delete

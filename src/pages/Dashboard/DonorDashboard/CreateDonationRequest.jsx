@@ -99,8 +99,8 @@ const CreateDonationRequest = () => {
     return <div className="text-center mt-10">Failed to load profile.</div>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
-      <h2 className="text-2xl font-bold text-red-600 mb-6">
+    <div className="max-w-3xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg mt-10 shadow-secondary border border-secondary">
+      <h2 className="text-xl font-bold text-primary mb-6">
         Create Donation Request
       </h2>
 

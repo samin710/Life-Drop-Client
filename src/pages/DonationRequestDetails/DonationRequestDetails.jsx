@@ -7,6 +7,7 @@ import useAuth from "../../Hooks/useAuth";
 import { ArrowLeft } from "lucide-react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAxios from "../../Hooks/useAxios";
+import Loading from "../../components/Loading/Loading";
 
 const DonationRequestDetails = () => {
   const { id } = useParams();
@@ -57,12 +58,7 @@ const DonationRequestDetails = () => {
       hour12: true,
     });
 
-  if (isLoading)
-    return (
-      <div className="text-center py-20">
-        <span className="loading loading-spinner text-primary"></span>
-      </div>
-    );
+  if (isLoading) return <Loading></Loading>;
   if (isError)
     return <p className="text-center text-red-500">Failed to load request.</p>;
 
