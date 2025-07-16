@@ -8,7 +8,7 @@
 ---
 
 ## 🖇️ Server Link 
-👉 [Server Link](https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-samin710)
+👉 [Server Link](https://github.com/samin710/Life-Drop-Server)
 
 ---
 
