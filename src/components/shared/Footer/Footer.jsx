@@ -23,7 +23,7 @@ const Footer = () => {
             <img src={logo} alt="" className="w-12 h-12 " />
             <h2 className="text-2xl font-bold text-primary">LifeDrop</h2>
           </Link>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm">
             Give blood, give life. Join us in building a strong donor community
             that saves lives every day.
           </p>

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../Hooks/useAxios";
 import { Search } from "lucide-react";
 import { Link } from "react-router";
+import Loading from "../../components/Loading/Loading";
 
 const BlogPage = () => {
   const axiosInstance = useAxios();
@@ -25,11 +26,7 @@ const BlogPage = () => {
   );
 
   if (isLoading) {
-    return (
-      <div className="text-center py-20">
-        <span className="loading loading-spinner text-primary" />
-      </div>
-    );
+    return <Loading></Loading>;
   }
 
   if (isError) {

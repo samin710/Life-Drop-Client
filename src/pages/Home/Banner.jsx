@@ -8,7 +8,7 @@ const Banner = () => {
 
   return (
     <section
-      className="relative text-white py-20 overflow-hidden rounded-xl shadow-lg mt-6 bg-cover bg-center"
+      className="relative text-white py-20 overflow-hidden rounded-xl shadow-lg mt-6 bg-cover bg-center z-10"
       style={{ backgroundImage: `url(${bannerBG})` }}
     >
       /* Background decorative shapes */
