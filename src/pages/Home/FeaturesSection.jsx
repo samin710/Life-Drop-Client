@@ -49,10 +49,10 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16">
+      <div>
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+          <h2 className="text-4xl md:text-4xl font-bold text-primary">
             Why Choose LifeDrop?
           </h2>
           <p className="text-gray-600 mt-3 max-w-xl mx-auto">
@@ -65,7 +65,7 @@ const FeaturesSection = () => {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-md transition"
+              className="border border-secondary p-6 rounded-xl shadow hover:shadow-md transition"
             >
               <div className="mb-4">{feature.icon}</div>
               <h3 className="text-lg font-semibold text-gray-800 mb-2">

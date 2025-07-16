@@ -28,11 +28,11 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="py-16 bg-white" id="contact">
-      <div className="max-w-6xl mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center">
+    <section className="scroll-mt-20" id="contact">
+      <div className=" grid lg:grid-cols-2 gap-12 items-center ">
         {/* Contact Info */}
-        <div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+        <div className="text-center lg:text-left">
+          <h2 className="text-4xl text-primary font-bold  mb-4">
             Get in Touch
           </h2>
           <p className="text-gray-600 mb-6">
@@ -53,7 +53,7 @@ const ContactUs = () => {
         {/* Contact Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-gray-50 p-6 rounded-xl shadow-md space-y-4"
+          className="p-6 rounded-xl shadow-md space-y-4 border border-secondary"
         >
           <div>
             <label className="block font-medium mb-1">Name</label>
