@@ -113,7 +113,7 @@ const ContentManagement = () => {
           {currentBlogs.map((blog) => (
             <div
               key={blog._id}
-              className="border rounded-lg p-4 shadow flex flex-col justify-between"
+              className="border border-secondary rounded-lg p-4 shadow flex flex-col justify-between"
             >
               <div>
                 <h3 className="text-lg font-semibold mb-1">{blog.title}</h3>
@@ -121,9 +121,10 @@ const ContentManagement = () => {
                 <p className="text-sm text-gray-500 mb-2">
                   Status: {blog.status}
                 </p>
-                <p className="line-clamp-3 text-sm text-gray-600 mb-2">
-                  {blog.content}
-                </p>
+                <div
+                  className="line-clamp-3 text-sm text-gray-600 mb-2"
+                  dangerouslySetInnerHTML={{ __html: blog.content }}
+                />
               </div>
               <div className="flex justify-between items-center mt-3">
                 <div className="space-x-2">

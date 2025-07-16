@@ -14,7 +14,7 @@ const DashboardLayout = () => {
     <div className="flex min-h-screen bg-base-200">
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-lg transition-transform transform ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 bg-base-100 shadow-lg transition-transform transform ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
         } lg:relative lg:translate-x-0`}
       >

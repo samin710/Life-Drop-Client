@@ -55,7 +55,7 @@ const AdminDashboardBloodGroupChart = () => {
 
   return (
     <div className="bg-white rounded-lg shadow p-6 mt-8">
-      <h2 className="text-4xl text-primary font-semibold mb-4">
+      <h2 className="text-xl text-primary font-semibold mb-4">
         Blood Group Distribution Over Time
       </h2>
       <ResponsiveContainer width="100%" height={350}>

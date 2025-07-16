@@ -98,8 +98,8 @@ const AllUsersPage = () => {
   if (isError) return <div className="text-red-500">Failed to load users.</div>;
 
   return (
-    <div className="p-6 bg-white shadow rounded-md mt-6">
-      <h2 className="text-xl font-semibold mb-4 text-red-600">All Users</h2>
+    <div className="p-6 bg-base-100 shadow-lg shadow-secondary rounded-md mt-6">
+      <h2 className="text-xl font-semibold mb-4 text-primary ">All Users</h2>
 
       <div className="flex justify-between mb-4">
         <div className="space-x-2">
@@ -134,7 +134,7 @@ const AllUsersPage = () => {
           </thead>
           <tbody>
             {users.length > 0 ? (
-              users.map((user) => (
+              users.map((user, index) => (
                 <tr key={user._id}>
                   <td>
                     <img
@@ -148,7 +148,13 @@ const AllUsersPage = () => {
                   <td className="capitalize">{user.role}</td>
                   <td className="capitalize">{user.status}</td>
                   <td>
-                    <div className="dropdown dropdown-left">
+                    <div
+                      className={`dropdown dropdown-left ${
+                        index >= users.length - 2
+                          ? "dropdown-top"
+                          : "dropdown-bottom"
+                      }`}
+                    >
                       <button tabIndex={0} className="btn btn-sm btn-ghost">
                         <MoreHorizontal className="w-5 h-5" />
                       </button>

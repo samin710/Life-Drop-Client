@@ -129,6 +129,10 @@ export const router = createBrowserRouter([
         path: "edit-blog/:id",
         Component: EditBlogPage,
       },
+      {
+        path: "request-details/:id",
+        Component: DonationRequestDetails,
+      },
     ],
   },
   {

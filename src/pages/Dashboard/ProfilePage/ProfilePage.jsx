@@ -122,7 +122,7 @@ const ProfilePage = () => {
     return <div className="text-center mt-10">Failed to load profile.</div>;
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+    <div className="max-w-2xl mx-auto p-6 bg-base-100 border border-secondary shadow-lg shadow-secondary rounded-lg mt-10">
       {profile ? (
         <>
           {" "}
