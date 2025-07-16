@@ -42,14 +42,7 @@ const FundingPage = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold">Funding</h2>
-        <button className="btn btn-primary" onClick={() => setShowForm(true)}>
-          Give Fund
-        </button>
-      </div>
-
+    <div className=" py-10">
       {showForm && (
         <Elements stripe={stripePromise}>
           <FundingForm
@@ -58,8 +51,14 @@ const FundingPage = () => {
           />
         </Elements>
       )}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-4xl font-semibold text-primary">Funding</h2>
+        <button className="btn btn-primary" onClick={() => setShowForm(true)}>
+          Give Fund
+        </button>
+      </div>
 
-      <div className="overflow-x-auto mt-6 bg-white shadow rounded-lg">
+      <div className="overflow-x-auto mt-6 border border-secondary shadow-md shadow-secondary rounded-lg">
         <table className="table w-full">
           <thead className="bg-gray-100 text-gray-700">
             <tr>

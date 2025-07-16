@@ -52,15 +52,15 @@ const SearchDonorsPage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-red-600 mb-6">
+    <div className="max-w-7xl mx-auto py-10">
+      <h1 className="text-4xl font-bold text-center text-primary mb-6">
         Search Donors
       </h1>
 
       {/* Search Form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-white p-6 rounded shadow-md"
+        className="grid grid-cols-1 md:grid-cols-3 gap-4 border border-secondary p-6 rounded shadow-lg shadow-secondary"
       >
         {/* Blood Group */}
         <div>
@@ -124,7 +124,7 @@ const SearchDonorsPage = () => {
               {donors.map((donor) => (
                 <div
                   key={donor._id}
-                  className="bg-white border border-red-100 p-4 rounded-md shadow hover:shadow-lg transition"
+                  className="border border-secondary p-4 rounded-lg shadow hover:shadow-lg hover:shadow-secondary transition"
                 >
                   <div className="flex items-center justify-center">
                     {" "}
@@ -135,10 +135,10 @@ const SearchDonorsPage = () => {
                     />
                   </div>
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-semibold text-red-600">
+                    <h3 className="text-lg font-semibold text-primary">
                       {donor.name}
                     </h3>
-                    <span className="badge badge-outline badge-primary">
+                    <span className="badge badge-primary">
                       {donor.bloodGroup}
                     </span>
                   </div>

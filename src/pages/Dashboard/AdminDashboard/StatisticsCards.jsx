@@ -56,7 +56,7 @@ const StatisticsCards = () => {
     // },
     {
       title: "Active Users",
-      count: stats.activeUsers + stats.blockedUsers || 0,
+      count: (stats.activeUsers || 0) + (stats.blockedUsers || 0),
       icon: <Users className="text-emerald-500 w-8 h-8" />,
       bg: "bg-emerald-100",
     },
@@ -80,13 +80,15 @@ const StatisticsCards = () => {
       {cardList.map((card, index) => (
         <div
           key={index}
-          className={`p-6 rounded-xl shadow-md flex items-center justify-between ${card.bg}`}
+          className={`p-6 rounded-xl shadow-md flex items-center justify-between ${card.bg} transition-transform hover:scale-[1.02] duration-200 `}
         >
-          <div>
-            <h4 className="text-2xl font-bold text-gray-800">{card.count}</h4>
-            <p className="text-gray-600">{card.title}</p>
+          <div className="flex flex-col items-start gap-2">
+            <div className="flex items-center gap-2">
+              {card.icon}
+              <p className="text-gray-700 font-medium">{card.title}</p>
+            </div>
+            <h4 className="text-3xl font-bold text-gray-800">{card.count}</h4>
           </div>
-          <div className="p-3 rounded-full bg-white shadow">{card.icon}</div>
         </div>
       ))}
     </div>

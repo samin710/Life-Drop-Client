@@ -64,9 +64,9 @@ const FundingForm = ({ closeForm, queryClient }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-lg shadow mt-4 space-y-4"
+      className="border border-secondary max-w-xl mx-auto p-6 rounded-lg shadow mb-8 space-y-4"
     >
-      <h3 className="text-lg font-semibold">Donate Now</h3>
+      <h3 className="text-lg text-primary font-semibold">Donate Now</h3>
       <input
         type="number"
         name="amount"

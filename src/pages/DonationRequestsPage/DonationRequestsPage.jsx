@@ -4,6 +4,7 @@ import { FaTint } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../components/Loading/Loading";
 import useAxios from "../../Hooks/useAxios";
+import { MapPin, Hospital, CalendarDays, Clock } from "lucide-react";
 
 const DonationRequestsPage = () => {
   const axiosInstance = useAxios();
@@ -36,8 +37,8 @@ const DonationRequestsPage = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
-      <h1 className="text-3xl font-bold text-center text-red-600 mb-8">
+    <div className="py-10">
+      <h1 className="text-4xl font-bold text-center text-primary mb-8">
         Pending Blood Donation Requests
       </h1>
 
@@ -46,9 +47,9 @@ const DonationRequestsPage = () => {
           {requests.map((req) => (
             <div
               key={req._id}
-              className="border rounded-lg p-4 shadow hover:shadow-lg transition"
+              className="border border-secondary rounded-lg p-4 shadow hover:shadow-lg transition"
             >
-              <div className="flex items-center gap-2 mb-2 text-red-600 font-semibold">
+              <div className="flex items-center gap-2 mb-2 text-primary font-semibold">
                 <FaTint />
                 <span>{req.bloodGroup}</span>
               </div>
@@ -56,17 +57,24 @@ const DonationRequestsPage = () => {
               <h3 className="text-lg font-bold text-gray-800 mb-1">
                 {req.recipientName}
               </h3>
-              <p className="text-sm text-gray-600 mb-1">
-                📍{req.recipientUpazila}, {req.recipientDistrict}
+
+              <p className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+                <MapPin className="w-4 h-4 text-primary" />
+                {req.recipientUpazila}, {req.recipientDistrict}
               </p>
-              <p className="text-sm text-gray-600 mb-1">
-                🏥 {req.hospitalName}, {req.fullAddress}
+
+              <p className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+                <Hospital className="w-4 h-4 text-primary" />
+                {req.hospitalName}, {req.fullAddress}
               </p>
-              <p className="text-sm text-gray-600 mb-1">
-                📅 {req.donationDate}
+
+              <p className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+                <CalendarDays className="w-4 h-4 text-primary" />
+                {req.donationDate}
               </p>
-              <p className="text-sm text-gray-600 mb-3">
-                ⏰{" "}
+
+              <p className="text-sm text-gray-600 mb-3 flex items-center gap-1">
+                <Clock className="w-4 h-4 text-primary" />
                 {new Date(`1970-01-01T${req.donationTime}`).toLocaleTimeString(
                   [],
                   {

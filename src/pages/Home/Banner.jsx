@@ -11,7 +11,7 @@ const Banner = () => {
       className="relative text-white py-20 overflow-hidden rounded-xl shadow-lg mt-6 bg-cover bg-center"
       style={{ backgroundImage: `url(${bannerBG})` }}
     >
-      {/* Background decorative shapes */}
+      /* Background decorative shapes */
       <div className="absolute inset-0 opacity-10 bg-[url('/blood-drop-bg.svg')] bg-no-repeat bg-center bg-cover"></div>
 
       <div className="container mx-auto px-6 text-center relative z-10">

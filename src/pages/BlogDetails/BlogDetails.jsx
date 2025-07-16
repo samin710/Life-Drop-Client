@@ -27,7 +27,7 @@ const BlogDetails = () => {
     return <p className="text-center text-red-500">Blog not found.</p>;
 
   return (
-    <div className="max-w-11/12 md:max-w-10/11 mx-auto px-4 py-10">
+    <div className="py-10">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
@@ -45,7 +45,7 @@ const BlogDetails = () => {
       />
 
       {/* Title */}
-      <h1 className="text-3xl font-bold mb-4 text-neutral-800">{blog.title}</h1>
+      <h1 className="text-4xl font-bold mb-4 text-primary">{blog.title}</h1>
 
       {/* Blog Content */}
       <div

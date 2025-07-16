@@ -34,21 +34,21 @@ const BlogPage = () => {
 
   if (isError) {
     return (
-      <p className="text-center text-red-500 py-10">
+      <p className="text-center text-primary py-10">
         Failed to load blogs. Please try again.
       </p>
     );
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-6 text-primary">
+    <div className=" py-10">
+      <h1 className="text-4xl font-bold text-center mb-6 text-primary">
         Latest Blogs
       </h1>
 
       {/* Search */}
       <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-md">
+        <div className="relative w-full max-w-lg">
           <Search className="absolute top-3.5 left-3 w-5 h-5 text-gray-400" />
           <input
             type="text"
@@ -68,7 +68,7 @@ const BlogPage = () => {
           {filteredBlogs.map((blog) => (
             <div
               key={blog._id}
-              className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition"
+              className="bg-white shadow-lg shadow-secondary rounded-lg overflow-hidden hover:shadow-lg transition"
             >
               <img
                 src={blog.thumbnail}

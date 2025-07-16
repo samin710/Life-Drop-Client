@@ -67,7 +67,7 @@ const DonationRequestDetails = () => {
     return <p className="text-center text-red-500">Failed to load request.</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow mt-6">
+    <div className="max-w-3xl mx-auto p-6 rounded-lg shadow-xl shadow-secondary mt-6 border border-secondary">
       <button
         onClick={() => navigate(-1)}
         className="flex items-center text-sm text-primary hover:underline mb-4"
@@ -76,11 +76,11 @@ const DonationRequestDetails = () => {
         Back
       </button>
 
-      <h2 className="text-2xl font-semibold text-red-600 mb-4">
+      <h2 className="text-2xl font-semibold text-primary mb-4">
         Donation Request Details
       </h2>
 
-      <div className="space-y-3 text-gray-700">
+      <div className="space-y-3">
         <p>
           <strong>Recipient Name:</strong> {request.recipientName}
         </p>
