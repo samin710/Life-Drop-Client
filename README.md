@@ -27,7 +27,7 @@
 
 - State & Data: React Query, React Hook Form
 
-- Security: Protected routes, secrue API calls with token authorization
+- Security: Protected routes, secure API calls with token authorization
 
 ---
 
